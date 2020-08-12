@@ -59,11 +59,13 @@ pipeline {
       }
     }
     stage('test'){
-      when {not {branch"dev/*"}} 
+      when {not {branch"dev/*"}
+      {ChangerequesT()}
+      } 
       steps{
         sh 'ci/component-test.sh'
       }
-    }//KOmmentarer er sjove
+    }
     stage('push to Docker app') {
            when { branch "master" }
           environment {
