@@ -59,15 +59,15 @@ pipeline {
       }
     }
     stage('test'){
-      when {not {branch"dev/*"}
-      {ChangerequesT()}
+      when {not {branch'dev/*' }
+      { ChangerequesT() }
       } 
-      steps{
+      steps {
         sh 'ci/component-test.sh'
       }
     }
-    stage('push to Docker app') {
-           when { branch "master" }
+    stage('push to Docker app' ) {
+           when { branch 'master' }
           environment {
             DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
           }
