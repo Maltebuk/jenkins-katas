@@ -59,7 +59,7 @@ pipeline {
       }
     }
     stage('test'){
-      when {branch != "dev/*"} 
+      when {not {branch"dev/*"}} 
       steps{
         sh 'ci/component-test.sh'
       }
