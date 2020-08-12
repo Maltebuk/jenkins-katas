@@ -32,12 +32,17 @@ pipeline {
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
             sh 'ls'
-            stash(excludes: '.git',  name: 'code')
-
+            stash excludes: '.git',  name: 'code'
             deleteDir()
             sh 'ls'
 
           }
+        post {
+        always {
+
+          deleteDir() /* clean up our workspace */
+        }
+        }
         }
         stage('Test App'){
           agent{
