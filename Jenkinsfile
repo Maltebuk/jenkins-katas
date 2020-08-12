@@ -24,6 +24,7 @@ pipeline {
 
           }
           steps {
+            unstash 'code'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
             sh 'ls'
@@ -51,4 +52,9 @@ pipeline {
     }
 
   }
+   post {
+        always {
+
+            deleteDir() /* clean up our workspace */
+        }
 }
