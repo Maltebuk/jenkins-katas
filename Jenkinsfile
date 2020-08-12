@@ -63,7 +63,7 @@ pipeline {
           {not {branch'dev/*' };
            changeRequest() 
           }
-
+      }
       steps {
         sh 'ci/component-test.sh'
       }
