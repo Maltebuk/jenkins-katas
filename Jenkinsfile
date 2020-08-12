@@ -58,6 +58,12 @@ pipeline {
         }
       }
     }
+    stage('test'){
+      when {branch != "dev/", "dev/sal-working-branch"}
+      steps{
+        sh 'ci/component-test.sh'
+      }
+    }
     stage('push to Docker app') {
            when { branch "master" }
           environment {
