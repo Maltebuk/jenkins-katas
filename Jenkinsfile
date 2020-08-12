@@ -59,7 +59,7 @@ pipeline {
       }
     }
     stage('test'){
-      when {branch != "dev/", "dev/sal-working-branch"}
+      when {branch != "dev/*"} 
       steps{
         sh 'ci/component-test.sh'
       }
