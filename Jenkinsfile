@@ -59,8 +59,9 @@ pipeline {
       }
     }
     stage('test') {
-      when {not {branch'dev/*' }}
-      when { changeRequest() }
+      when  {anyOf {not {branch'dev/*' }}
+       { changeRequest() }}
+
       steps {
         sh 'ci/component-test.sh'
       }
