@@ -49,6 +49,8 @@ pipeline {
               unstash 'code'
               sh 'ci/unit-test-app.sh'
               junit 'app/build/test-results/test/TEST-*.xml'
+              stash(excludes: '.git',  name: 'code')
+
               
           }
         post {
@@ -65,7 +67,6 @@ pipeline {
       }
       steps {
         unstash 'code' //unstash the repository code
-        stash(excludes: '.git',  name: 'code')
 
         sh 'ci/build-docker.sh'
         sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
