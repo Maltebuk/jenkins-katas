@@ -32,6 +32,8 @@ pipeline {
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
             sh 'ls'
+            stash(excludes: '.git',  name: 'code1')
+
             deleteDir()
             sh 'ls'
 
@@ -50,7 +52,6 @@ pipeline {
               unstash 'code'
               sh 'ci/unit-test-app.sh'
               junit 'app/build/test-results/test/TEST-*.xml' 
-              stash(excludes: '.git',  name: 'code1')
              
           }
         post {
