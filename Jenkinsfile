@@ -58,7 +58,9 @@ pipeline {
         }
       }
     }
-    stage('push to Docker app') {
+    stage('Master branch build') {
+          when { branch "master" }
+          stage('push to Docker app') {
           environment {
             DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
           }
@@ -69,6 +71,7 @@ pipeline {
             //login to docker hub with the credentials above
             sh 'ci/push-docker.sh'
           }
+    }
     }
   }
 }
