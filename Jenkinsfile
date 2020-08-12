@@ -34,7 +34,7 @@ pipeline {
             sh 'ls'
             deleteDir()
             sh 'ls'
-            stash(excludes: '.git',  name: 'code')
+            stash(excludes: '.git',  name: 'codetest')
 
           }
         }
