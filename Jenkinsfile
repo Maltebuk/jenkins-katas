@@ -63,7 +63,7 @@ pipeline {
       steps{
         sh 'ci/component-test.sh'
       }
-    }
+    }//KOmmentarer er sjove
     stage('push to Docker app') {
            when { branch "master" }
           environment {
